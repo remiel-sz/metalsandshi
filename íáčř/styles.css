@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --dark-red: #8B0000;
+    --dark-green: #006400;
+    --beige: #E8E4D1;
+    --beige-darker: #D8D4C1;
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --copper: #B87333;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--beige);
+    padding: 2rem;
+}
+
+.container {
+    background: linear-gradient(135deg, var(--dark-red) 0%, var(--dark-green) 100%);
+    padding: 4rem;
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 95%;
+    max-width: 800px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+    pointer-events: none;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.unit-system-toggle {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.unit-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--dark-red);
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.unit-toggle-btn:hover {
+    background: var(--dark-green);
+}
+
+.toggle-text {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.toggle-switch {
+    width: 40px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+}
+
+.unit-toggle-btn.metric .toggle-switch::before {
+    left: 22px;
+}
+
+.converter {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.input-divider {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+input {
+    width: 100%;
+    padding: 1.2rem;
+    padding-right: 4rem;
+    border: 2px solid white;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    color: white;
+    background: var(--dark-red);
+    transition: all 0.3s ease;
+}
+
+.currency-label {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.results-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.metal-result {
+    background: var(--dark-red);
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 1.2rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.metal-divider {
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.metal-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-right: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 80px;
+}
+
+.metal-amount {
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.metal-grains {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 1rem;
+}
+
+#goldResult .metal-label {
+    color: var(--gold);
+}
+
+#silverResult .metal-label {
+    color: var(--silver);
+}
+
+#copperResult .metal-label {
+    color: var(--copper);
+}
+
+.metal-input-container {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.metal-input-container input {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.metal-select,
+.unit-select {
+    background: var(--dark-red);
+    color: white;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.metal-select {
+    width: 90px;
+}
+
+.unit-select {
+    width: 60px;
+}
+
+.metal-select:hover,
+.unit-select:hover {
+    background: var(--dark-green);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 2rem;
+        border-radius: 50px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    .input-divider {
+        transform: rotate(90deg);
+        padding: 0.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .metal-result {
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem;
+    }
+
+    .metal-label {
+        grid-column: 1 / -1;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .metal-input-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .metal-input-container input {
+        width: 100%;
+    }
+
+    .metal-select,
+    .unit-select {
+        flex: 1;
+    }
+} 
